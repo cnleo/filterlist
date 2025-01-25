@@ -1,6 +1,7 @@
 example.com##a:has-text(/\bBeispieltext1\b/i):upward(div:nth-of-type(2)),p:has-text(/\bBeispieltext1\b/i):upward(div:nth-of-type(2))
 another-examplea.com##a:has-text(/\bBeispieltext1\b/i):upward(div:nth-of-type(2)),p:has-text(/\bBeispieltext1\b/i):upward(div:nth-of-type(2))
 ##a:has-text(/\bBeispieltext2\b/i):upward(div:nth-of-type(1)),p:has-text(/\bBeispieltext2\b/i):upward(div:nth-of-type(1))
+testseite.de,noch-eine-seite.de#@#a:has-text(/\bBeispieltext2\b/i):upward(div:nth-of-type(1)),p:has-text(/\bBeispieltext2\b/i):upward(div:nth-of-type(1))
 ##a:has-text(/\bNoch ein Text\b/i):upward(div:nth-of-type(3)),p:has-text(/\bNoch ein Text\b/i):upward(div:nth-of-type(3))
 ##a:has-text(/\bEin anderer Text\b/i):upward(div:nth-of-type(3)),p:has-text(/\bEin anderer Text\b/i):upward(div:nth-of-type(3))
 ##a:has-text(/\bNoch ein Text\b/i):upward(div:nth-of-type(1)),p:has-text(/\bNoch ein Text\b/i):upward(div:nth-of-type(1))
