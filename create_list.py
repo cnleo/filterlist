@@ -1,6 +1,6 @@
 # Filterregeln: Jedes Element ist ein Array mit [Wörter, inkludierte Domains, exkludierte Domains, upward-divs]
 filter_regeln = [
-    [["Beispieltext1"], ["example.com", "another-example.com"], [], 2],  # Inkludierte Domains, 2 divs nach oben
+    [["Beispieltext1"], ["example.com", "another-examplea.com"], [], 2],  # Inkludierte Domains, 2 divs nach oben
     [["Beispieltext2"], [], ["testseite.de", "noch-eine-seite.de"], 1],  # Exkludierte Domains, 1 div nach oben
     [["Noch ein Text", "Ein anderer Text"], [], [], 3],  # Global gültig, 3 divs nach oben
     [["Noch ein Text", "Ein anderer Text"], [], []],  # Kein upward-divs angegeben, Standardwert 1
