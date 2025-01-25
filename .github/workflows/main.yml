@@ -26,7 +26,7 @@ jobs:
 
       - name: Run Python script
         run: |
-          python create_liste.py  # Ersetze 'dein_script.py' durch den tatsächlichen Skript-Dateinamen
+          python create_list.py  # Ersetze 'dein_script.py' durch den tatsächlichen Skript-Dateinamen
 
       - name: Commit generated file
         run: |
