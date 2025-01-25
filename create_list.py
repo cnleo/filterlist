@@ -1,53 +1,16 @@
-#https://github.com/gorhill/uBlock/wiki/Static-filter-syntax
+import os
+import importlib.util
 
-# Filterregeln: Jedes Element ist ein Array mit [Wörter, inkludierte Domains, exkludierte Domains, upward-divs]
-filter_regeln = [
-    # wordlists, include-domains, exclude-domains, upward(N)
-   # [["Beispieltext1"], [], ["domain1.com", "domain2.com", [".cssattribute"]], 2],  # Exkludierte Domains und CSS-Attribute
-   # [["Beispieltext2"], ["domain1.com", "domain2.com", [".cssattribute", ".cssattribute2"]], [], 1],  # Inkludierte Domains und CSS-Attribute
-   # [["Noch ein Text", "Ein anderer Text"], [], [], 3],  # Global gültig, 3 divs nach oben
-   # [["Testtext"], ["includedomain.com"], ["excludedomain.com", [".cssclass"]], ],  # Test leeres updward element; default 1
-   # [["Testtext"], ["includedomain.com"], ["excludedomain.com", [".cssclass"]] ]  # Test leeres updward array; default 1
-
-    # Person
-    [["trump"],[],[],],
-    [["elon musk"],[],[],],
-    [["putin"],[],[],],
-
-    # Boycott
-    [["AZDelivery"],[],[],],
-    [["OTTO"],[],[],],
-
-    # infatillity
-    [["Worse"],[],[],],
-    [["fuck"],[],[],],
-    [["idioten"],[],[],],
-    [["verheerend"],[],[],],
-    [["Hecklers"],[],[],],
-    [["wtf"],[],[],],
-
-    # Media
-    [["ard"],[],[],],
-    [["zdf"],[],[],],
-    [["bild"],[],[],],
-    [["twitter"],[],[],],
-    [["tagesschau"],[],[],],
-    [["Fokus"],[],[],],
-    [["Spiegel"],[],[],],
-    [["computerbild"],[],[],],
-    
-    # Politics
-    [["cdu"],[],[],],
-    [["csu"],[],[],],
-    [["die linke"],[],[],],
-    [["die grünen"],[],[],],
-    [["afd"],[],[],],
-    [["fdp"],[],[],],
-    [["spd"],[],[],],
-    [["bundeswehr"],[],[],],
-    [["panzer"],[],[],],
-
-]
+# Funktion zum Laden der Filterregeln aus einer Python-Datei
+def lade_filter_regeln(dateipfad):
+    if os.path.exists(dateipfad):
+        spec = importlib.util.spec_from_file_location("filter_regeln", dateipfad)
+        filter_regeln_modul = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(filter_regeln_modul)
+        return filter_regeln_modul.filter_regeln  # Gibt die filter_regeln-Variable aus der Datei zurück
+    else:
+        print(f"Die Datei {dateipfad} wurde nicht gefunden.")
+        return []
 
 # Ziel-Tags (z. B. 'a', 'p', 'div', etc.)
 tags = ["a", "p"]
