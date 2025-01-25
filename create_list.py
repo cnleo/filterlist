@@ -13,7 +13,7 @@ def lade_filter_regeln(dateipfad):
         return []
 
 # Der Dateipfad zur Python-Datei, die das filter_regeln Array enthält
-dateipfad = "filter_regeln.py"
+dateipfad = "filter_rules.py"
 
 # Laden der Filterregeln
 filter_regeln = lade_filter_regeln(dateipfad)
