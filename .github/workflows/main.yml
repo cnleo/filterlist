@@ -29,6 +29,7 @@ jobs:
 
       - name: Run Python script
         run: |
+          git clean -fdx  # Entfernt alle untracked files
           python create_list.py  # Ersetze 'dein_script.py' durch den tatsächlichen Skript-Dateinamen
 
       - name: Commit generated file
