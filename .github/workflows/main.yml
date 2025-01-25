@@ -27,9 +27,12 @@ jobs:
           # Falls du zusätzliche Abhängigkeiten hast, kannst du sie hier installieren:
           # pip install -r requirements.txt
 
+      - name: Clean untracked files
+        run: |
+          git clean -fdx  # Entfernt alle untracked files (inklusive temporärer Dateien)
+
       - name: Run Python script
         run: |
-          git clean -fdx  # Entfernt alle untracked files
           python create_list.py  # Ersetze 'dein_script.py' durch den tatsächlichen Skript-Dateinamen
 
       - name: Commit generated file
