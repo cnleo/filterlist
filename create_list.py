@@ -28,7 +28,7 @@ for regel in filter_regeln:
             filter_liste.append(f"##{tag_filters}")
         
         # Falls exkludierte Domains definiert sind
-        elif exclude_domains:
+        if exclude_domains:
             exclude_filter = f"{','.join(exclude_domains)}#@#{tag_filters}"
             filter_liste.append(exclude_filter)
         
