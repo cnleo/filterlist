@@ -23,7 +23,8 @@ for regel in filter_regeln:
         tag_filters = ",".join([f"{tag}:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))" for tag in tags])
         
         # Standard: Gilt für alle Seiten (zuerst prüfen, um Gewichtung der Regeln zu beachten)
-        if not include_domains and not exclude_domains:
+        #if not include_domains and not exclude_domains:
+        if not include_domains:
             filter_liste.append(f"##{tag_filters}")
         
         # Falls exkludierte Domains definiert sind
