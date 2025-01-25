@@ -13,6 +13,12 @@ def lade_filter_regeln(dateipfad):
         print(f"Die Datei {dateipfad} wurde nicht gefunden.")
         return []
 
+# Hilfsfunktion: Prüfen, ob ein Wort eine Domain (TLD) enthält
+def contains_domain(word):
+    # TLDs: einfache Prüfung auf typische Domain-Endungen
+    tld_pattern = r"\b[\w-]+\.(com|org|net|de|io|info|co|ru|uk)\b"
+    return re.match(tld_pattern, word)
+
 # Der Dateipfad zur Python-Datei, die das filter_regeln Array enthält
 dateipfad = "filter_rules.py"
 
