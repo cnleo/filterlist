@@ -12,6 +12,12 @@ def lade_filter_regeln(dateipfad):
         print(f"Die Datei {dateipfad} wurde nicht gefunden.")
         return []
 
+# Der Dateipfad zur Python-Datei, die das filter_regeln Array enthält
+dateipfad = "filter_regeln.py"
+
+# Laden der Filterregeln
+filter_regeln = lade_filter_regeln(dateipfad)
+
 # Ziel-Tags (z. B. 'a', 'p', 'div', etc.)
 tags = ["a", "p"]
 
