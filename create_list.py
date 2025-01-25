@@ -25,6 +25,12 @@ tags = ["a", "p"]
 filter_liste = []
 global_filter_liste = []
 
+# Funktion zum Erkennen von Domains in einem Wort
+def contains_domain(word):
+    # Regex zum Erkennen von Domainmustern (z.B. meinedomain.com, beispiel.org, etc.)
+    domain_pattern = re.compile(r"\b[A-Za-z0-9.-]+\.[a-zA-Z]{2,}\b")
+    return bool(domain_pattern.search(word))
+
 for regel in filter_regeln:
     woerter = regel[0]  # Wörter, die gefiltert werden sollen
     include_domains = regel[1]  # Inkludierte Domains
@@ -76,6 +82,12 @@ for regel in filter_regeln:
         elif include_domains:
             filter_strings = apply_css_attributes(include_domains, tag_filters, is_include=True)
             filter_liste.extend(filter_strings)
+
+            # Überprüfe, ob ein Wort eine Domain enthält (z.B. "meinedomain.com")
+            if contains_domain(wort) and "a" in tags and not any(isinstance(domain, list) for domain in include_domains):
+                # Ergänze `a[href~="meinedomain.com"]:upward(...)` nur, wenn kein CSS-Attribut vorhanden ist
+                domain = re.search(r"\b[A-Za-z0-9.-]+\.[a-zA-Z]{2,}\b", wort).group()
+                filter_liste.append(f"{domain}##a[href~=\"{domain}\"]:upward(div)")
 
         # Falls keine CSS-Attribute gesetzt sind, werden die Tags für a, p hinzugefügt
         if not any(isinstance(domain, list) for domain in include_domains + exclude_domains):
