@@ -1,3 +1,4 @@
+*##a:has-text(/\btest.de\b/i):upward(div),p:has-text(/\btest.de\b/i):upward(div)
 *##a:has-text(/\btrump\b/i):upward(div),p:has-text(/\btrump\b/i):upward(div)
 *##a:has-text(/\belon musk\b/i):upward(div),p:has-text(/\belon musk\b/i):upward(div)
 *##a:has-text(/\bputin\b/i):upward(div),p:has-text(/\bputin\b/i):upward(div)
