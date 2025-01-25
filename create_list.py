@@ -57,6 +57,15 @@ for regel in filter_regeln:
             youtube_filter = f"www.youtube.com##.ytd-compact-video-renderer.style-scope:has-text(/\\b{wort}\\b/i)"
             filter_liste.append(youtube_filter)
 
+        # Zusätzliche Regel für golem.de (mit default upward_divs = 2)
+        if "golem.de" not in exclude_domains:
+            golem_upward_divs = 2
+            if domain_match:  # Wenn das Wort eine Domain ist, füge href hinzu
+                golem_filter = f'golem.de##a[href~="{wort}"]:upward(div:nth-of-type({golem_upward_divs})),a:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({golem_upward_divs})),p:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({golem_upward_divs}))'
+            else:  # Kein href, nur Textfilter
+                golem_filter = f'golem.de##a:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({golem_upward_divs})),p:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({golem_upward_divs}))'
+            filter_liste.append(golem_filter)
+
         # Filter für inkludierte Domains
         if include_domains:
             for domain in include_domains:
