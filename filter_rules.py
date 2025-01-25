@@ -9,6 +9,9 @@ filter_regeln = [
    # [["Testtext"], ["includedomain.com"], ["excludedomain.com", [".cssclass"]], ],  # Test leeres updward element; default 1
    # [["Testtext"], ["includedomain.com"], ["excludedomain.com", [".cssclass"]] ]  # Test leeres updward array; default 1
 
+    # TEST
+    [["test.de"],[],[],],
+    
     # Person
     [["trump"],[],[],],
     [["elon musk"],[],[],],
