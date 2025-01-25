@@ -52,6 +52,11 @@ for regel in filter_regeln:
 
             filter_liste.append(f"*##{tag_filters}")
 
+        # Zusätzliche Regel für www.youtube.com
+        if "www.youtube.com" not in exclude_domains:
+            youtube_filter = f"www.youtube.com##.ytd-compact-video-renderer.style-scope:has-text(/\\b{wort}\\b/i)"
+            filter_liste.append(youtube_filter)
+
         # Filter für inkludierte Domains
         if include_domains:
             for domain in include_domains:
