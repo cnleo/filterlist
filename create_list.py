@@ -1,5 +1,6 @@
 import os
 import importlib.util
+import re  # Für das Erkennen von Domains
 
 # Funktion zum Laden der Filterregeln aus einer Python-Datei
 def lade_filter_regeln(dateipfad):
