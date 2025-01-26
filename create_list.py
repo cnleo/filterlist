@@ -52,7 +52,7 @@ for regel in filter_regeln:
     woerter = regel[0]
     include_domains = regel[1]
     exclude_domains = regel[2]
-    upward_divs = regel[3] if len(regel) > 3 else 1
+    upward_divs = regel[3] if len(regel) > 3 and regel[3] is not None else 1  # Standardwert für upward-divs ist 1, falls nicht angegeben
 
     for wort in woerter:
         # Prüfen, ob das Wort eine Domain enthält
@@ -62,9 +62,9 @@ for regel in filter_regeln:
         if not include_domains and not exclude_domains:
             tag_filters = ""
             if domain_match:  # Spezieller Filter für Domains
-                tag_filters = f'a[href~="{wort}"]:upward(div),a:has-text(/\\b{wort}\\b/i):upward(div),p:has-text(/\\b{wort}\\b/i):upward(div)'
+                tag_filters = f'a[href~="{wort}"]:upward(div:nth-of-type({upward_divs})),a:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs})),p:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))'
             else:  # Wenn keine Domain, dann nur allgemeine Textfilter ohne href
-                tag_filters = ",".join([f"{tag}:has-text(/\\b{wort}\\b/i):upward(div)" if upward_divs == 1 else f"{tag}:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))" for tag in tags])
+                tag_filters = ",".join([f"{tag}:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))" for tag in tags])
 
             filter_liste.append(f"*##{tag_filters}")
 
@@ -87,13 +87,13 @@ for regel in filter_regeln:
             for domain in include_domains:
                 tag_filters = ""
                 if isinstance(domain, list):  # CSS-Attribute
-                    css_filters = ",".join([f"{css}:has-text(/\\b{wort}\\b/i):upward(div)" if upward_divs == 1 else f"{css}:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))" for css in domain])
+                    css_filters = ",".join([f"{css}:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))" for css in domain])
                     filter_liste.append(f"{','.join(include_domains[:-1])}##{css_filters}")
                 elif domain_match:  # Wenn das Wort eine Domain ist
-                    tag_filters = f'a[href~="{wort}"]:upward(div),a:has-text(/\\b{wort}\\b/i):upward(div),p:has-text(/\\b{wort}\\b/i):upward(div)'
+                    tag_filters = f'a[href~="{wort}"]:upward(div:nth-of-type({upward_divs})),a:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs})),p:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))'
                     filter_liste.append(f"{domain}##{tag_filters}")
                 else:  # Keine Domain, nur Textfilter
-                    tag_filters = ",".join([f"{tag}:has-text(/\\b{wort}\\b/i):upward(div)" if upward_divs == 1 else f"{tag}:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))" for tag in tags])
+                    tag_filters = ",".join([f"{tag}:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))" for tag in tags])
                     filter_liste.append(f"{domain}##{tag_filters}")
 
         # Filter für exkludierte Domains
@@ -101,13 +101,13 @@ for regel in filter_regeln:
             for domain in exclude_domains:
                 tag_filters = ""
                 if isinstance(domain, list):  # CSS-Attribute
-                    css_filters = ",".join([f"{css}:has-text(/\\b{wort}\\b/i):upward(div)" if upward_divs == 1 else f"{css}:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))" for css in domain])
+                    css_filters = ",".join([f"{css}:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))" for css in domain])
                     filter_liste.append(f"{','.join(exclude_domains[:-1])}#@#{css_filters}")
                 elif domain_match:  # Wenn das Wort eine Domain ist
-                    tag_filters = f'a[href~="{wort}"]:upward(div),a:has-text(/\\b{wort}\\b/i):upward(div),p:has-text(/\\b{wort}\\b/i):upward(div)'
+                    tag_filters = f'a[href~="{wort}"]:upward(div:nth-of-type({upward_divs})),a:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs})),p:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))'
                     filter_liste.append(f"{domain}#@#{tag_filters}")
                 else:  # Keine Domain, nur Textfilter
-                    tag_filters = ",".join([f"{tag}:has-text(/\\b{wort}\\b/i):upward(div)" if upward_divs == 1 else f"{tag}:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))" for tag in tags])
+                    tag_filters = ",".join([f"{tag}:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))" for tag in tags])
                     filter_liste.append(f"{domain}#@#{tag_filters}")
 
 # Datei speichern
