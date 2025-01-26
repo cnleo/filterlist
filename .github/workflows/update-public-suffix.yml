@@ -5,6 +5,8 @@ on:
     # Wöchentlich jeden Montag um Mitternacht
     - cron: '0 0 * * 1'
 
+workflow_dispatch:  # Ermöglicht manuelles Triggern des Workflows via GitHub-UI
+
 jobs:
   update:
     runs-on: ubuntu-latest
