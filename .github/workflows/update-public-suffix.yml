@@ -1,0 +1,26 @@
+name: Update Public Suffix List
+
+on:
+  schedule:
+    # Wöchentlich jeden Montag um Mitternacht
+    - cron: '0 0 * * 1'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Download public suffix list
+        run: |
+          curl -o public_suffix_list.dat https://raw.githubusercontent.com/publicsuffix/list/main/public_suffix_list.dat
+
+      - name: Commit and push the updated list
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add public_suffix_list.dat
+          git commit -m "Update public suffix list"
+          git push
