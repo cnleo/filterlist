@@ -17,10 +17,14 @@ filter_regeln = [
     [["elon musk"],[],[],],
     [["putin"],[],[],],
 
-    # Boycott
+    # Trademarks
     [["AZDelivery"],[],[],],
     [["OTTO"],[],[],],
+    [["tesla"],[],[],],
+    [["vw"],[],[],],
+    [["uefa"],[],[],],
 
+    
     # infatillity
     [["Worse"],[],[],],
     [["fuck"],[],[],],
