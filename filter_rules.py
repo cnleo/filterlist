@@ -32,12 +32,13 @@ filter_regeln = [
     # Media
     [["ard"],[],[],],
     [["zdf"],[],[],],
-    [["bild"],[],[],],
-    [["twitter"],[],[],],
+    [["bild.de"],[],[],],
+    [["twitter.com"],[],[],],
+    [["x.com"],[],[],],
     [["tagesschau"],[],[],],
-    [["Fokus"],[],[],],
-    [["Spiegel"],[],[],],
-    [["computerbild"],[],[],],
+    [["Fokus.de"],[],[],],
+    [["Spiegel.de"],[],[],],
+    [["computerbild.de"],[],[],],
     
     # Politics
     [["cdu"],[],[],],
