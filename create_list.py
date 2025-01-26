@@ -67,6 +67,7 @@ for regel in filter_regeln:
                 tag_filters = ",".join([f"{tag}:has-text(/\\b{wort}\\b/i):upward(div:nth-of-type({upward_divs}))" for tag in tags])
 
             filter_liste.append(f"*##{tag_filters}")
+            
 
         # Zusätzliche Regel für www.youtube.com
         if "www.youtube.com" not in exclude_domains:
@@ -81,6 +82,8 @@ for regel in filter_regeln:
             else:  # Kein href, nur Textfilter
                 golem_filter = f'golem.de##a:has-text(/\\b{wort}\\b/i):upward(li:nth-of-type({golem_upward_divs})),p:has-text(/\\b{wort}\\b/i):upward(li:nth-of-type({golem_upward_divs}))'
             filter_liste.append(golem_filter)
+            exclude_domains.append("golem.de");
+            
 
         # Filter für inkludierte Domains
         if include_domains:
