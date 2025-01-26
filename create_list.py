@@ -60,18 +60,18 @@ for regel in filter_regeln:
             for tag in tags:
                 if domain_match:  # Spezieller Filter für Domains
                     filter_liste.add(f'*##a[href~="{wort}"]:upward(div)')
-                filter_liste.add(f'*##{tag}:has-text(/\\b{wort}\\'?s?\\b/i):upward(div)')
+                filter_liste.add(f'*##{tag}:has-text(/\\b{wort}\\'\?s\?\\b/i):upward(div)')
 
         # Filter für YouTube
         if "www.youtube.com" not in exclude_domains:
-            filter_liste.add(f"www.youtube.com##.ytd-compact-video-renderer.style-scope:has-text(/\\b{wort}\\'?s?\\b/i)")
+            filter_liste.add(f"www.youtube.com##.ytd-compact-video-renderer.style-scope:has-text(/\\b{wort}\\'\?s\?\\b/i)")
 
         # Filter für Golem
         if "golem.de" not in exclude_domains:
             for tag in tags:
                 if domain_match:
                     filter_liste.add(f'golem.de##a[href~="{wort}"]:upward(li)')
-                filter_liste.add(f'golem.de##{tag}:has-text(/\\b{wort}\\'?s?\\b/i):upward(li)')
+                filter_liste.add(f'golem.de##{tag}:has-text(/\\b{wort}\\'\?s\?\\b/i):upward(li)')
             exclude_domains.append("golem.de")
 
         # Filter für inkludierte Domains
@@ -80,7 +80,7 @@ for regel in filter_regeln:
                 for tag in tags:
                     if domain_match:
                         filter_liste.add(f"{domain}##a[href~='{wort}']:upward(div)")
-                    filter_liste.add(f"{domain}##{tag}:has-text(/\\b{wort}\\'?s?\\b/i):upward(div)")
+                    filter_liste.add(f"{domain}##{tag}:has-text(/\\b{wort}\\'\?s\?\\b/i):upward(div)")
 
         # Filter für exkludierte Domains
         if exclude_domains:
@@ -88,7 +88,7 @@ for regel in filter_regeln:
                 for tag in tags:
                     if domain_match:
                         filter_liste.add(f"{domain}#@#a[href~='{wort}']:upward(div)")
-                    filter_liste.add(f"{domain}#@#{tag}:has-text(/\\b{wort}\\'?s?\\b/i):upward(div)")
+                    filter_liste.add(f"{domain}#@#{tag}:has-text(/\\b{wort}\\'\?s\?\\b/i):upward(div)")
 
 # Datei speichern
 with open("ublock_filter.txt", "w", encoding="utf-8") as file:
