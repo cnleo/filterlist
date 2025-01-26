@@ -13,11 +13,27 @@ def lade_filter_regeln(dateipfad):
         print(f"Die Datei {dateipfad} wurde nicht gefunden.")
         return []
 
+# Hilfsfunktion zum Laden der TLDs aus der public_suffix_list.dat
+def load_public_suffix_list(file_path):
+    tlds = set()
+    with open(file_path, 'r', encoding='utf-8') as file:
+        for line in file:
+            line = line.strip()
+            if line and not line.startswith("//"):  # Ignoriere leere Zeilen und Kommentare
+                tlds.add(line)
+    return tlds
+
+# Beispiel für das Laden der Liste
+tld_list = load_public_suffix_list('public_suffix_list.dat')
+#print(tld_list)  # Überprüfe die geladenen TLDs
+
 # Hilfsfunktion: Prüfen, ob ein Wort eine Domain (TLD) enthält
 def contains_domain(word):
-    # TLDs: einfache Prüfung auf typische Domain-Endungen
-    tld_pattern = r"\b[\w-]+\.(com|org|net|de|io|info|co|ru|uk)\b"
-    return re.match(tld_pattern, word)
+    domain_parts = word.split('.')
+    if len(domain_parts) >= 2:  # Mindestens eine Subdomain und eine TLD
+        tld = domain_parts[-1]  # Die TLD ist der letzte Teil
+        return tld in tld_list
+    return False
 
 # Der Dateipfad zur Python-Datei, die das filter_regeln Array enthält
 dateipfad = "filter_rules.py"
