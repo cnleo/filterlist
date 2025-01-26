@@ -62,11 +62,11 @@ for regel in filter_regeln:
         if not include_domains and not exclude_domains:
             if domain_match:  # Spezieller Filter für Domains
                 for tag in tags:
-                    filter_liste.append(f'a[href~="{wort}"]:upward(div)')
-                    filter_liste.append(f'{tag}:has-text(/\\b{wort}\\b/i):upward(div)')
+                    filter_liste.append(f'*##a[href~="{wort}"]:upward(div)')
+                    filter_liste.append(f'*##{tag}:has-text(/\\b{wort}\\b/i):upward(div)')
             else:  # Wenn keine Domain, dann nur allgemeine Textfilter ohne href
                 for tag in tags:
-                    filter_liste.append(f'{tag}:has-text(/\\b{wort}\\b/i):upward(div)')
+                    filter_liste.append(f'*##{tag}:has-text(/\\b{wort}\\b/i):upward(div)')
             
         # Filter für spezifische Domains (z.B. youtube.com und golem.de)
         if "www.youtube.com" not in exclude_domains:
