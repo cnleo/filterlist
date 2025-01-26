@@ -25,7 +25,6 @@ def load_public_suffix_list(file_path):
 
 # Beispiel für das Laden der Liste
 tld_list = load_public_suffix_list('public_suffix_list.dat')
-#print(tld_list)  # Überprüfe die geladenen TLDs
 
 # Hilfsfunktion: Prüfen, ob ein Wort eine Domain (TLD) enthält
 def contains_domain(word):
@@ -44,9 +43,8 @@ filter_regeln = lade_filter_regeln(dateipfad)
 # Ziel-Tags (z. B. 'a', 'p', 'div', etc.)
 tags = ["a", "p"]
 
-
 # Generierte Filter
-filter_liste = []
+filter_liste = set()  # Set statt Liste verwenden, um doppelte Einträge zu vermeiden
 
 for regel in filter_regeln:
     woerter = regel[0]
@@ -55,67 +53,45 @@ for regel in filter_regeln:
     upward_divs = regel[3] if len(regel) > 3 and regel[3] is not None else 1  # Standardwert für upward-divs ist 1, falls nicht angegeben
 
     for wort in woerter:
-        # Prüfen, ob das Wort eine Domain enthält
         domain_match = contains_domain(wort)
 
         # Standard-Filter (global)
         if not include_domains and not exclude_domains:
-            if domain_match:  # Spezieller Filter für Domains
-                for tag in tags:
-                    filter_liste.append(f'*##a[href~="{wort}"]:upward(div)')
-                    filter_liste.append(f'*##{tag}:has-text(/\\b{wort}\\b/i):upward(div)')
-            else:  # Wenn keine Domain, dann nur allgemeine Textfilter ohne href
-                for tag in tags:
-                    filter_liste.append(f'*##{tag}:has-text(/\\b{wort}\\b/i):upward(div)')
-            
-        # Filter für spezifische Domains (z.B. youtube.com und golem.de)
-        if "www.youtube.com" not in exclude_domains:
-            youtube_filter = f"www.youtube.com##.ytd-compact-video-renderer.style-scope:has-text(/\\b{wort}\\b/i)"
-            filter_liste.append(youtube_filter)
+            for tag in tags:
+                if domain_match:  # Spezieller Filter für Domains
+                    filter_liste.add(f'*##a[href~="{wort}"]:upward(div)')
+                filter_liste.add(f'*##{tag}:has-text(/\\b{wort}\\b/i):upward(div)')
 
+        # Filter für YouTube
+        if "www.youtube.com" not in exclude_domains:
+            filter_liste.add(f"www.youtube.com##.ytd-compact-video-renderer.style-scope:has-text(/\\b{wort}\\b/i)")
+
+        # Filter für Golem
         if "golem.de" not in exclude_domains:
-            golem_upward_divs = 1
-            if domain_match:  # Wenn das Wort eine Domain ist, füge href hinzu
-                for tag in tags:
-                    filter_liste.append(f'golem.de##a[href~="{wort}"]:upward(li)')
-                    filter_liste.append(f'golem.de##{tag}:has-text(/\\b{wort}\\b/i):upward(li)')
-            else:  # Kein href, nur Textfilter
-                for tag in tags:
-                    filter_liste.append(f'golem.de##{tag}:has-text(/\\b{wort}\\b/i):upward(li)')
+            for tag in tags:
+                if domain_match:
+                    filter_liste.add(f'golem.de##a[href~="{wort}"]:upward(li)')
+                filter_liste.add(f'golem.de##{tag}:has-text(/\\b{wort}\\b/i):upward(li)')
             exclude_domains.append("golem.de")
-        
+
         # Filter für inkludierte Domains
         if include_domains:
             for domain in include_domains:
-                if isinstance(domain, list):  # CSS-Attribute
-                    for css in domain:
-                        css_filter = f"{css}:has-text(/\\b{wort}\\b/i):upward(div)"
-                        filter_liste.append(f"{','.join(include_domains[:-1])}##{css_filter}")
-                elif domain_match:  # Wenn das Wort eine Domain ist
-                    for tag in tags:
-                        filter_liste.append(f"{domain}##a[href~='{wort}']:upward(div)")
-                        filter_liste.append(f"{domain}##{tag}:has-text(/\\b{wort}\\b/i):upward(div)")
-                else:  # Keine Domain, nur Textfilter
-                    for tag in tags:
-                        filter_liste.append(f"{domain}##{tag}:has-text(/\\b{wort}\\b/i):upward(div)")
+                for tag in tags:
+                    if domain_match:
+                        filter_liste.add(f"{domain}##a[href~='{wort}']:upward(div)")
+                    filter_liste.add(f"{domain}##{tag}:has-text(/\\b{wort}\\b/i):upward(div)")
 
         # Filter für exkludierte Domains
         if exclude_domains:
             for domain in exclude_domains:
-                if isinstance(domain, list):  # CSS-Attribute
-                    for css in domain:
-                        css_filter = f"{css}:has-text(/\\b{wort}\\b/i):upward(div)"
-                        filter_liste.append(f"{','.join(exclude_domains[:-1])}#@#{css_filter}")
-                elif domain_match:  # Wenn das Wort eine Domain ist
-                    for tag in tags:
-                        filter_liste.append(f"{domain}#@#a[href~='{wort}']:upward(div)")
-                        filter_liste.append(f"{domain}#@#{tag}:has-text(/\\b{wort}\\b/i):upward(div)")
-                else:  # Keine Domain, nur Textfilter
-                    for tag in tags:
-                        filter_liste.append(f"{domain}#@#{tag}:has-text(/\\b{wort}\\b/i):upward(div)")
+                for tag in tags:
+                    if domain_match:
+                        filter_liste.add(f"{domain}#@#a[href~='{wort}']:upward(div)")
+                    filter_liste.add(f"{domain}#@#{tag}:has-text(/\\b{wort}\\b/i):upward(div)")
 
 # Datei speichern
 with open("ublock_filter.txt", "w", encoding="utf-8") as file:
-    file.write("\n".join(filter_liste))
+    file.write("\n".join(sorted(filter_liste)))
 
 print("Filterliste generiert: ublock_filter.txt")
