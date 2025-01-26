@@ -1,5 +1,8 @@
 name: Update Public Suffix List
 
+permissions:
+  contents: write  # Erlaubt den Workflow, auf den Inhalt des Repositories zu schreiben
+
 on:
   schedule:
     # Wöchentlich jeden Montag um Mitternacht
