@@ -31,7 +31,7 @@ tld_list = load_public_suffix_list('public_suffix_list.dat')
 def contains_domain(word):
     domain_parts = word.split('.')
     if len(domain_parts) >= 2:  # Mindestens eine Subdomain und eine TLD
-        tld = domain_parts[-1]  # Die TLD ist der letzte Teil
+        tld = domain_parts[-1].split('/')[0].split('?')[0]  # Die TLD ist der letzte Teil
         return tld in tld_list
     return False
 
