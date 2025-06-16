@@ -11303,9 +11303,10 @@ adobeaemcloud.com
 aem.live
 hlx.live
 adobeaemcloud.net
+aem.network
 aem.page
 hlx.page
-hlx3.page
+aem.reviews
 
 // Adobe Developer Platform : https://developer.adobe.com
 // Submitted by Jesse MacFadyen<jessem@adobe.com>
@@ -15294,6 +15295,14 @@ srht.site
 // Submitted by Antonis Kalipetis <akalipetis@sourcelair.com>
 apps.lair.io
 *.stolos.io
+
+// sourceWAY GmbH : https://sourceway.de
+// Submitted by Richard Reiber <mail@sourceway.de>
+4.at
+my.at
+my.de
+*.nxa.eu
+nx.gw
 
 // SpeedPartner GmbH : https://www.speedpartner.de/
 // Submitted by Stefan Neufeind <info@speedpartner.de>
