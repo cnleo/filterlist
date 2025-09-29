@@ -11317,12 +11317,6 @@ africa.com
 // Submitted by Przemyslaw Plewa <it-admin@domena.pl>
 beep.pl
 
-// Airkit : https://www.airkit.com/
-// Submitted by Grant Cooksey <security@airkit.com>
-airkitapps.com
-airkitapps-au.com
-airkitapps.eu
-
 // Aiven : https://aiven.io/
 // Submitted by Aiven Security Team <security+appdomains@aiven.io>
 aiven.app
@@ -12452,6 +12446,8 @@ cafjs.com
 canva-apps.cn
 my.canvasite.cn
 canva-apps.com
+rice-labs.com
+canva.run
 my.canva.site
 
 // Carrd : https://carrd.co
@@ -14917,6 +14913,10 @@ dev.project-study.com
 // Submitted by Martin Meier <admin@protonet.io>
 protonet.io
 
+// PT Ekossistim Indo Digital : https://e.id
+// Submitted by Eid Team <support@corp.e.id>
+e.id
+
 // Publication Presse Communication SARL : https://ppcom.fr
 // Submitted by Yaacov Akiba Slama <admin@chirurgiens-dentistes-en-france.fr>
 chirurgiens-dentistes-en-france.fr
@@ -15613,6 +15613,10 @@ telebit.app
 telebit.io
 *.telebit.xyz
 
+// Teleport : https://goteleport.com
+// Submitted by Rob Picard <security@goteleport.com>
+teleport.sh
+
 // Thingdust AG : https://thingdust.com/
 // Submitted by Adrian Imboden <adi@thingdust.com>
 *.firenet.ch
@@ -15909,6 +15913,7 @@ js.wpenginepowered.com
 
 // XenonCloud GbR : https://xenoncloud.net
 // Submitted by Julian Uphoff <publicsuffixlist@xenoncloud.net>
+*.xenonconnect.de
 half.host
 
 // XnBay Technology : http://www.xnbay.com/
