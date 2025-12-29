@@ -5670,7 +5670,9 @@ si
 sj
 
 // sk : https://www.iana.org/domains/root/db/sk.html
+// https://sk-nic.sk/
 sk
+org.sk
 
 // sl : http://www.nic.sl
 // Submitted by registry <adam@neoip.com>
@@ -13908,6 +13910,10 @@ grebedoc.dev
 günstigbestellen.de
 günstigliefern.de
 
+// GV.UY : https://nic.gv.uy
+// Submitted by cheng <admin@mailto.al>
+gv.uy
+
 // Hackclub Nest : https://hackclub.app
 // Submitted by Cyteon <admins@hackclub.app>
 hackclub.app
@@ -14291,6 +14297,10 @@ kapsi.fi
 // Submitted by Abuse KU Leuven <abuse@kuleuven.be>
 ezproxy.kuleuven.be
 kuleuven.cloud
+
+// Kevin Service : https://kevsrv.me
+// Submitted by Kevin Service Team <cs@kevsrv.me>
+ae.kg
 
 // Keyweb AG : https://www.keyweb.de
 // Submitted by Martin Dannehl <postmaster@keymachine.de>
@@ -15806,6 +15816,14 @@ tche.br
 site.tb-hosting.com
 directwp.eu
 
+// TechEdge Limited: https://www.nic.uk.cc/
+// Submitted by TechEdge Developer <support@nic.uk.cc>
+ec.cc
+eu.cc
+gu.cc
+uk.cc
+us.cc
+
 // Teckids e.V. : https://www.teckids.org
 // Submitted by Dominik George <dominik.george@teckids.org>
 edugit.io
@@ -16199,6 +16217,7 @@ enterprisecloud.nu
 // Zone.ID: https://zone.id
 // Submitted by Gx1.org <security@gx1.org>
 zone.id
+nett.to
 
 // ZoneABC : https://zoneabc.net
 // Submitted by ZoneABC Team <support@zoneabc.net>
