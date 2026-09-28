@@ -12766,8 +12766,10 @@ co.no
 // Combell.com : https://www.combell.com
 // Submitted by Combell Team <support@combell.com>
 webhosting.be
+site.webhosting.be
 prvw.eu
 hosting-cluster.nl
+site.hosting-cluster.nl
 
 // Contentful GmbH : https://www.contentful.com
 // Submitted by Contentful Developer Experience Team <prd-ecosystem-dx@contentful.com>
@@ -12840,6 +12842,13 @@ dyndns.dappnode.io
 // Submitted by Paul Biggar <ops@darklang.com>
 builtwithdark.com
 darklang.io
+
+// Databricks, Inc. : https://www.databricks.com/
+// Submitted by Databricks Enterprise Security <entsec@databricks.com>
+aws.databricksapps.com
+*.azure.databricksapps.com
+gcp.databricksapps.com
+aws-gov.databricksapps.us
 
 // DataDetect, LLC. : https://datadetect.com
 // Submitted by Andrew Banchich <abanchich@sceven.com>
@@ -13775,6 +13784,10 @@ gitlab.io
 gitapp.si
 gitpage.si
 
+// Glide : https://www.glideapps.com
+// Submitted by Glide Engineering <engineering@heyglide.com>
+glideos.app
+
 // Global NOG Alliance : https://nogalliance.org/
 // Submitted by Sander Steffann <sander@nogalliance.org>
 nog.community
@@ -14225,6 +14238,10 @@ ipifony.net
 home64.de
 ipv64.de
 ipv64.net
+
+// IQHost / IQ Group : https://iqhost.pl/
+// Submitted by Adam Buhl <admin@iqhost.pl>
+iqhs.pl
 
 // ir.md : https://nic.ir.md
 // Submitted by Ali Soizi <info@nic.ir.md>
